@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "date": "2025-07-14",
+    "time": {
+      "start": "9:00AM",
+      "end": "1:00PM"
+    },
+    "is_booked": true
+  },
+  {
+    "id": 2,
+    "date": "2025-07-15",
+    "time": {
+      "start": "2:00PM",
+      "end": "6:00PM"
+    },
+    "is_booked": false
+  },
+  {
+    "id": 3,
+    "date": "2025-07-16",
+    "time": {
+      "start": "10:00AM",
+      "end": "2:00PM"
+    },
+    "is_booked": false
+  }
+]
