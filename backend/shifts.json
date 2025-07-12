@@ -25,5 +25,14 @@
       "end": "2:00PM"
     },
     "is_booked": false
+  },
+  {
+    "id": 3,
+    "date": "2025-07-17",
+    "time": {
+      "start": "9:00AM",
+      "end": "4:00PM"
+    },
+    "is_booked": false
   }
 ]

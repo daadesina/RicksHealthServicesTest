@@ -8,7 +8,8 @@ This is a simple backend API built with Flask for a mini shift booking system. I
 - View shift details by ID
 - Mock login with hardcoded credentials
 - Book a shift (and update shift data)
-- Data saved in `shifts.json`
+- Session-based authentication
+- Data stored in `shifts.json`
 - CORS enabled for frontend integration
 
 ---
@@ -17,7 +18,7 @@ This is a simple backend API built with Flask for a mini shift booking system. I
 
 ### Requirements
 
-- Python 3.1+
+- Python 3.10+
 - `pip`
 
 ### Installation & Running
@@ -33,13 +34,21 @@ This is a simple backend API built with Flask for a mini shift booking system. I
 3. Run the server:
    ```bash
    python app.py
-   
+
 
 ## API Endpoints
 
 | Method | Endpoint              | Description              |
 |--------|-----------------------|--------------------------|
 | POST   | /api/login            | Mock login               |
+| POST   | /api/logout           | Logout (clears session)  |
 | GET    | /api/shifts           | List all shifts          |
 | GET    | /api/shifts/<id>      | Get a shift by ID        |
 | POST   | /api/book/<id>        | Book a shift             |
+
+
+## Author
+- Abdullah Adesina Dhikrullah
+- Email: daadesina1@gmail.com
+- GitHub: https://github.com/daadesina
+
