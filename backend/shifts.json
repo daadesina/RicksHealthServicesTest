@@ -15,7 +15,7 @@
       "start": "2:00PM",
       "end": "6:00PM"
     },
-    "is_booked": false
+    "is_booked": true
   },
   {
     "id": 3,
@@ -24,15 +24,42 @@
       "start": "10:00AM",
       "end": "2:00PM"
     },
-    "is_booked": false
+    "is_booked": true
   },
   {
-    "id": 3,
+    "id": 4,
     "date": "2025-07-17",
     "time": {
       "start": "9:00AM",
       "end": "4:00PM"
     },
     "is_booked": false
+  },
+  {
+    "id": 5,
+    "date": "2025-07-18",
+    "time": {
+      "start": "2:00PM",
+      "end": "6:00PM"
+    },
+    "is_booked": false
+  },
+  {
+    "id": 6,
+    "date": "2025-07-19",
+    "time": {
+      "start": "10:00AM",
+      "end": "2:00PM"
+    },
+    "is_booked": true
+  },
+  {
+    "id": 7,
+    "date": "2025-07-20",
+    "time": {
+      "start": "9:00AM",
+      "end": "4:00PM"
+    },
+    "is_booked": true
   }
 ]
