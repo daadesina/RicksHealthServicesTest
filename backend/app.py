@@ -4,7 +4,9 @@ import json
 
 app = Flask(__name__)
 app.secret_key = "adesina_key"
-CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "*"}})
+CORS(app, supports_credentials=True, resources={
+    r"/api/*": {"origins": ["https://rickshealthservicestest.vercel.app"]}
+})
 
 
 with open('./shifts.json', 'r') as file:
