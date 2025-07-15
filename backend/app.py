@@ -4,17 +4,7 @@ import json
 
 app = Flask(__name__)
 app.secret_key = "adesina_key"
-from flask_cors import CORS
-
-
-CORS(app, supports_credentials=True, resources={
-    r"/api/*": {
-        "origins": [
-            "http://localhost:3000"
-        ]
-    }
-})
-
+CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "*"}})
 
 
 with open('./shifts.json', 'r') as file:
