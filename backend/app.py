@@ -4,7 +4,13 @@ import json
 
 app = Flask(__name__)
 app.secret_key = "adesina_key"
-CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "*"}})
+
+# ✅ Fix: Define your actual frontend origin
+CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+
+# ✅ Add cookie configs for cross-origin
+app.config['SESSION_COOKIE_SAMESITE'] = 'None'
+app.config['SESSION_COOKIE_SECURE'] = True  # MUST be True for SameSite=None
 
 
 with open('./shifts.json', 'r') as file:
