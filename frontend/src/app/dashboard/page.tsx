@@ -18,12 +18,13 @@ type Shift = {
 };
 export default function Dashboard() {
   const [shifts, setShifts] = useState<Shift[]>([])
+  const [bookingIds, setBookingIds] = useState<number[]>([]);
 
   const router = useRouter()
 
   const fetchShifts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/shifts', {
+      const response = await axios.get('https://rickshealthservicestest-api.onrender.com/api/shifts', {
         withCredentials: true,
       })
 
@@ -38,19 +39,26 @@ export default function Dashboard() {
     fetchShifts();
   }, []);
 
-  const handleBookShift = async (shiftId: any) => {
-    try{
-        const response = await axios.post(`http://localhost:5000/api/book/${parseInt(shiftId)}`, {},
-    { withCredentials: true })
+  const handleBookShift = async (shiftId: number) => {
+    setBookingIds((prev) => [...prev, shiftId]);
 
-        if (response.status == 200){
-            alert('Shift Booked Successfully')
-            fetchShifts()
-        }
-    }catch(error: any){
-        alert(error)
+    try {
+      const response = await axios.post(
+        `https://rickshealthservicestest-api.onrender.com/api/book/${shiftId}`,
+        {},
+        { withCredentials: true }
+      );
+
+      if (response.status === 200) {
+        alert('Shift Booked Successfully');
+        fetchShifts();
+      }
+    } catch (error: any) {
+      alert(error);
+    } finally {
+      setBookingIds((prev) => prev.filter((id) => id !== shiftId));
     }
-  }
+  };
 
   const handleLogOut = async () => {
     const confirmLogout = window.confirm("Are you sure you want to log out?");
@@ -58,7 +66,7 @@ export default function Dashboard() {
         return
     }
     try{
-        const response = await axios.post('http://localhost:5000/api/logout', {}, {withCredentials: true})
+        const response = await axios.post('https://rickshealthservicestest-api.onrender.com/api/logout', {}, {withCredentials: true})
         if (response.status == 200){
             router.push('/')
         }
@@ -79,11 +87,11 @@ export default function Dashboard() {
         </button>
       </header>
 
-      <section className="mt-12 flex flex-wrap justify-start gap-x-8 gap-y-8">
+      <section className="mt-12 grid grid-cols-[repeat(auto-fit,_minmax(12rem,_1fr))] gap-8">
         {shifts.map((shift) => (
           <article
             key={shift.id}
-            className="bg-[#E4E3E3] font-medium px-5 py-3 shrink-0 rounded-2xl flex flex-col justify-between w-[12rem] h-[12rem]"
+            className="bg-[#E4E3E3] font-medium px-5 py-3 rounded-2xl flex flex-col justify-between h-[12rem] hover:shadow-md transition"
           >
             <div>
               <p className="text-[20px] text-[#1F1E1E]">
@@ -107,11 +115,12 @@ export default function Dashboard() {
             {shift.is_booked ? (
               <p className="bg-[#D4D2D2] text-center text-[#1F1E1E] py-2 w-full rounded-xl">Booked</p>
             ) : (
-              <button 
+              <button
                 className="bg-[#2B2B2B] text-[#E4E3E3] py-2 w-full rounded-xl"
-                onClick={()=>{handleBookShift(shift.id)}}
-                >
-                Book Shift
+                onClick={() => handleBookShift(shift.id)}
+                disabled={bookingIds.includes(shift.id)}
+              >
+                {bookingIds.includes(shift.id) ? 'Booking...' : 'Book Shift'}
               </button>
             )}
           </article>

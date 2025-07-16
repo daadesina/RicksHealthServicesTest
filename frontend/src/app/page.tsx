@@ -5,16 +5,19 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
+
 export default function Home() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loginLabel, setLoginLabel] = useState('Login')
 
   const router = useRouter()
 
   const handleLogin = async () => {
     try{
+      setLoginLabel('Logging in...')
       const response = await axios.post(
-        'http://localhost:5000/api/login',
+        'https://rickshealthservicestest-api.onrender.com/api/login',
         {
           email: email.trim(), 
           password: password.trim()
@@ -27,10 +30,14 @@ export default function Home() {
         }
       )
       if (response.status == 200){
+        alert("Login successful")
         router.push('/dashboard')
       }
     }catch (error: any){
-      alert('Login failed');
+      console.error(error)
+      alert('Incorrect email or password');
+    }finally{
+      setLoginLabel('Login')
     }
   }
 
@@ -66,7 +73,7 @@ export default function Home() {
           className='bg-[#2B2B2B] text-[16px] w-full py-2 rounded-full text-[#E4E3E3]'
           onClick={handleLogin}
           >
-          Login
+          {loginLabel}
         </button>
 
         <p className='text-[16px]'>Don&#39;t have an account? sign up</p>
