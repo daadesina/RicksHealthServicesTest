@@ -160,14 +160,3 @@ Full Stack Developer | Mobile App Developer | ALX Software Engineering Graduate
 
 ---
 
-## 📌 Notes
-
-> This project is intended for demonstration and educational purposes.
-> It uses simple session-based login and local JSON for persistence.
-> Not intended for production use without further enhancements.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
